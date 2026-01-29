@@ -31,11 +31,7 @@ export default function KayakSection() {
             isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
           }`}
         >
-          <img
-            src="/kayaking-sardinia.jpg"
-            alt="Kayaking in Sardinia"
-            className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-          />
+         <img src={import.meta.env.BASE_URL + 'kayaking-sardinia.jpg'} alt="Kayaking in Sardinia" />
         </div>
 
         {/* Content */}
