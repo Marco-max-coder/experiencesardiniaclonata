@@ -56,10 +56,7 @@ export default function TrekkingSection() {
           }`}
         >
          
-          <img
-            src={new URL('trekking-sardinia.jpg', import.meta.env.BASE_URL).href}
-            alt="Trekking in Sardinia"
-          />
+        <img src={import.meta.env.BASE_URL + 'trekking-sardinia.jpg'} alt="Trekking in Sardinia" />
 
         </div>
       </div>
