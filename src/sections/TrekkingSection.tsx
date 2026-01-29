@@ -55,11 +55,12 @@ export default function TrekkingSection() {
             isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
           }`}
         >
+         
           <img
-            src="trekking-sardinia.jpg"
+            src={new URL('trekking-sardinia.jpg', import.meta.env.BASE_URL).href}
             alt="Trekking in Sardinia"
-            className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
           />
+
         </div>
       </div>
     </section>
