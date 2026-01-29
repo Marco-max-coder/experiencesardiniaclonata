@@ -18,6 +18,9 @@ export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
 
+  // Helper: costruisce il path corretto per GitHub Pages
+  const img = (name: string) => import.meta.env.BASE_URL + name;
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -44,10 +47,10 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
+
+    // Simula l’invio del form
     await new Promise((resolve) => setTimeout(resolve, 1500));
-    
+
     setIsSubmitting(false);
     setSubmitMessage('Thank you for your message! We will get back to you soon.');
     setFormData({
@@ -67,7 +70,7 @@ export default function ContactPage() {
       {/* Hero Section */}
       <section className="relative h-[300px] overflow-hidden">
         <img
-          src="/contact-image-1.jpg"
+          src={img('contact-image-1.jpg')}
           alt="Sardinia beach"
           className="w-full h-full object-cover"
         />
@@ -101,9 +104,7 @@ export default function ContactPage() {
               <p className="text-gray-600 leading-relaxed mb-6">
                 Contact us to share your expectations for your trip to Sardinia, and we will do our best to provide you with advice and suggestions to make your experience unforgettable.
               </p>
-              <p className="text-sm text-gray-500 mb-8">
-                (*Please fill the mandatory fields)
-              </p>
+              <p className="text-sm text-gray-500 mb-8">(*Please fill the mandatory fields)</p>
 
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div>
@@ -122,9 +123,7 @@ export default function ContactPage() {
                 </div>
 
                 <div>
-                  <Label htmlFor="phone" className="text-gray-700">
-                    Phone number
-                  </Label>
+                  <Label htmlFor="phone" className="text-gray-700">Phone number</Label>
                   <Input
                     id="phone"
                     name="phone"
@@ -153,9 +152,7 @@ export default function ContactPage() {
                 </div>
 
                 <div>
-                  <Label htmlFor="company" className="text-gray-700">
-                    Azienda (Company)
-                  </Label>
+                  <Label htmlFor="company" className="text-gray-700">Azienda (Company)</Label>
                   <Input
                     id="company"
                     name="company"
@@ -261,7 +258,7 @@ export default function ContactPage() {
 
                 <div className="mt-8">
                   <img
-                    src="/contact-image-2.jpg"
+                    src={img('contact-image-2.jpg')}
                     alt="Sardinia landscape"
                     className="w-full h-48 object-cover rounded-lg"
                   />
