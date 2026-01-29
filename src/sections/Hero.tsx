@@ -31,11 +31,7 @@ export default function Hero() {
     >
       {/* Background Image with Parallax */}
       <div className="hero-bg absolute inset-0 w-full h-[120%] -top-[10%]">
-        <img
-          src="/hero-sardinia.jpg"
-          alt="Sardinia coastline"
-          className="w-full h-full object-cover"
-        />
+       <img src={import.meta.env.BASE_URL + 'hero-sardinia.jpg'} alt="Sardinia" />
         {/* Dark Overlay */}
         <div className="absolute inset-0 bg-black/35" />
       </div>
