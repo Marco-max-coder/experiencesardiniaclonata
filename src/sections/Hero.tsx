@@ -32,7 +32,7 @@ export default function Hero() {
       {/* Background Image with Parallax */}
       <div className="hero-bg absolute inset-0 w-full h-[120%] -top-[10%]">
         <img
-          src="/hero-sardinia.jpg"
+          src="hero-sardinia.jpg"
           alt="Sardinia coastline"
           className="w-full h-full object-cover"
         />
