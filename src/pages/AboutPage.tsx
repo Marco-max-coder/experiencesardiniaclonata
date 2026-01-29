@@ -5,6 +5,9 @@ export default function AboutPage() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
+  // Helper per costruire il path corretto su GitHub Pages
+  const img = (name: string) => import.meta.env.BASE_URL + name;
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -26,15 +29,18 @@ export default function AboutPage() {
   const philosophyPoints = [
     {
       icon: <MapPin className="w-5 h-5" />,
-      text: 'We promote responsible and sustainable tourism, respectful of the environment and local communities.',
+      text:
+        'We promote responsible and sustainable tourism, respectful of the environment and local communities.',
     },
     {
       icon: <Camera className="w-5 h-5" />,
-      text: 'We enhance the authentic beauty of Sardinia, away from mass tourism routes.',
+      text:
+        'We enhance the authentic beauty of Sardinia, away from mass tourism routes.',
     },
     {
       icon: <BookOpen className="w-5 h-5" />,
-      text: 'We offer personalized experiences, designed for those who love walking, photography, and listening to the stories of the land.',
+      text:
+        'We offer personalized experiences, designed for those who love walking, photography, and listening to the stories of the land.',
     },
   ];
 
@@ -50,7 +56,7 @@ export default function AboutPage() {
       {/* Hero Section */}
       <section className="relative h-[400px] overflow-hidden">
         <img
-          src="/nature-adventures.jpg"
+          src={img('nature-adventures.jpg')}
           alt="Sardinia nature"
           className="w-full h-full object-cover"
         />
@@ -82,10 +88,13 @@ export default function AboutPage() {
               Experience Sardinia
             </h2>
             <p className="text-gray-600 text-lg leading-relaxed">
-              Experience Sardinia was created to let you discover Sardinia in an authentic, sustainable, and meaningful way.
+              Experience Sardinia was created to let you discover Sardinia in an authentic,
+              sustainable, and meaningful way.
             </p>
             <p className="text-gray-600 text-lg leading-relaxed mt-4">
-              Leading our experiences is <strong className="text-gray-800">Gianluca Soru</strong>, an <span className="text-[#2E7DB8] font-medium">Environmental Hiking Guide (AIGAE)</span> who has been accompanying travelers, hikers, and nature lovers on their journeys of discovery across the island for years.
+              Leading our experiences is <strong className="text-gray-800">Gianluca Soru</strong>, an{' '}
+              <span className="text-[#2E7DB8] font-medium">Environmental Hiking Guide (AIGAE)</span>{' '}
+              who has been accompanying travelers, hikers, and nature lovers on their journeys of discovery across the island for years.
             </p>
           </div>
 
@@ -97,7 +106,7 @@ export default function AboutPage() {
           >
             <div className="aspect-[3/4] overflow-hidden rounded-lg">
               <img
-                src="/guide-gianluca.jpg"
+                src={img('guide-gianluca.jpg')}
                 alt="Gianluca Soru - Environmental Hiking Guide"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
               />
@@ -107,10 +116,15 @@ export default function AboutPage() {
                 Who is Gianluca Soru
               </h3>
               <p className="text-gray-600 leading-relaxed mb-4">
-                Gianluca Soru is a certified <span className="text-[#2E7DB8] font-medium">AIGAE Environmental Hiking Guide</span>, with a deep knowledge of the Sardinian territory and a strong passion for nature, history, and local traditions.
+                Gianluca Soru is a certified{' '}
+                <span className="text-[#2E7DB8] font-medium">AIGAE Environmental Hiking Guide</span>,
+                with a deep knowledge of the Sardinian territory and a strong passion for nature,
+                history, and local traditions.
               </p>
               <p className="text-gray-600 leading-relaxed">
-                His excursions tell the story of Sardinia in every detail: coastal and mountain trails, breathtaking landscapes, quiet forests, and places rich in memory and identity. Through his guidance, every walk becomes an experience of connection with the island's landscapes and culture.
+                His excursions tell the story of Sardinia in every detail: coastal and mountain trails,
+                breathtaking landscapes, quiet forests, and places rich in memory and identity. Through his guidance,
+                every walk becomes an experience of connection with the island&apos;s landscapes and culture.
               </p>
             </div>
           </div>
@@ -166,3 +180,4 @@ export default function AboutPage() {
     </div>
   );
 }
+
