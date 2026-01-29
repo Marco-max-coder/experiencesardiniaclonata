@@ -56,7 +56,7 @@ export default function TrekkingSection() {
           }`}
         >
           <img
-            src="trekking-sardinia.jpg"
+            src="/trekking-sardinia.jpg"
             alt="Trekking in Sardinia"
             className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
           />
