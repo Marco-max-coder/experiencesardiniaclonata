@@ -32,7 +32,7 @@ export default function KayakSection() {
           }`}
         >
           <img
-            src="/kayaking-sardinia.jpg"
+            src="kayaking-sardinia.jpg"
             alt="Kayaking in Sardinia"
             className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
           />
