@@ -55,14 +55,14 @@ export default function WhyContactUs() {
           >
             <div className="aspect-square overflow-hidden rounded-lg">
               <img
-                src="contact-image-1.jpg"
+                src="/contact-image-1.jpg"
                 alt="Sardinia beach"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
               />
             </div>
             <div className="aspect-square overflow-hidden rounded-lg">
               <img
-                src="contact-image-2.jpg"
+                src="/contact-image-2.jpg"
                 alt="Sardinia countryside"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
               />
