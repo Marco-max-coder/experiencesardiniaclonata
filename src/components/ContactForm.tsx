@@ -1,40 +1,29 @@
-import React from 'react';
-
 export default function ContactForm() {
   return (
     <form
-      action="https://formspree.io/f/xqebyyqd" // <-- incolla qui il tuo endpoint Formspree
+      action="https://formspree.io/f/XXXXXXXX"  // <--- incolla qui il TUO endpoint
       method="POST"
-      style={{ display: 'grid', gap: '12px', maxWidth: 520 }}
+      className="space-y-5"
     >
-      {/* Nome */}
-      <label>
-        Nome
-        <input type="text" name="name" required />
-      </label>
+      {/* campi già presenti */}
+      <label className="text-gray-700">Nome *</label>
+      <input type="text" name="name" required />
 
-      {/* Email del mittente */}
-      <label>
-        Email
-        <input type="email" name="_replyto" required />
-      </label>
+      <label className="text-gray-700">Email *</label>
+      <input type="email" name="_replyto" required />
 
-      {/* Messaggio */}
-      <label>
-        Messaggio
-        <textarea name="message" rows={6} required />
-      </label>
+      <label className="text-gray-700">Oggetto *</label>
+      <input type="text" name="subject" required />
 
-      {/* Oggetto email (facoltativo) */}
+      <label className="text-gray-700">Messaggio *</label>
+      <textarea name="message" rows={6} required />
+
+      {/* opzionali: subject di default, honeypot, redirect */}
       <input type="hidden" name="_subject" value="Nuovo messaggio dal sito Experience Sardinia" />
-
-      {/* Honeypot anti‑bot (lascialo nascosto) */}
       <input type="text" name="_gotcha" style={{ display: 'none' }} aria-hidden="true" />
-
-      {/* Redirect (facoltativo) */}
       {/* <input type="hidden" name="_next" value="https://experiencesardiniaallword.it/grazie" /> */}
 
-      <button type="submit">Invia</button>
+      <button type="submit" className="btn-primary">Invia</button>
     </form>
   );
 }
