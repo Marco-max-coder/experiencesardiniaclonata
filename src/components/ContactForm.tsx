@@ -1,7 +1,7 @@
 export default function ContactForm() {
   return (
     <form
-      action="https://formspree.io/f/XXXXXXXX"  // <--- incolla qui il TUO endpoint
+      action="https://formspree.io/f/xqebyyqd"  // <--- incolla qui il TUO endpoint
       method="POST"
       className="space-y-5"
     >
