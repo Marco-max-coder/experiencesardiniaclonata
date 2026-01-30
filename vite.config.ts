@@ -1,11 +1,10 @@
-
 import path from 'path'
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  // IMPORTANTISSIMO: slash iniziale e finale
-  base: '/experiencesardiniaclonata/',
+  // Con dominio personalizzato su GitHub Pages la base deve essere la radice
+  base: '/',
   plugins: [react()],
   resolve: {
     alias: {
@@ -13,4 +12,3 @@ export default defineConfig({
     },
   },
 })
-
