@@ -71,7 +71,7 @@ export default function ContactPage() {
                 {/* Form: tutti i campi in una colonna, bordati, con sfondo celestino per indicare input richiesti */}
                 {/* Sostituisci action con il tuo endpoint Formspree o gestore preferito */}
                 <form
-                  action="https://formspree.io/f/your-form-id"
+                  action="https://formspree.io/f/xqebyyqd"
                   method="POST"
                   className="space-y-4"
                 >
