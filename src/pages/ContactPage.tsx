@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
 import { MapPin, Phone, Mail } from 'lucide-react';
-import ContactForm from '@/components/ContactForm';
 
 export default function ContactPage() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -54,7 +53,7 @@ export default function ContactPage() {
       <section className="section-padding bg-white">
         <div className="container-custom max-w-6xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Left: Form Card */}
+            {/* Left: Form Card (campi allineati in colonna, bordati e con sfondo celestino) */}
             <div
               className={`transition-all duration-700 delay-100 ${
                 isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
@@ -69,11 +68,81 @@ export default function ContactPage() {
                 </p>
                 <p className="text-sm text-gray-500 mb-6">(*Please fill the mandatory fields)</p>
 
-                {/* Form wrapper: aggiunge padding e separazione visiva */}
-                <div className="space-y-4">
-                  {/* Se il tuo ContactForm è già stilato, lo lasciamo; altrimenti puoi sostituire con markup del form */}
-                  <ContactForm />
-                </div>
+                {/* Form: tutti i campi in una colonna, bordati, con sfondo celestino per indicare input richiesti */}
+                {/* Sostituisci action con il tuo endpoint Formspree o gestore preferito */}
+                <form
+                  action="https://formspree.io/f/your-form-id"
+                  method="POST"
+                  className="space-y-4"
+                >
+                  <div>
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                      Nome <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      id="name"
+                      name="name"
+                      type="text"
+                      required
+                      placeholder="Il tuo nome"
+                      className="w-full border-2 border-[#2E7DB8] rounded-md bg-[#EAF6FF] px-4 py-2 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#2E7DB8]"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                      Email <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      required
+                      placeholder="tuo@email.com"
+                      className="w-full border-2 border-[#2E7DB8] rounded-md bg-[#EAF6FF] px-4 py-2 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#2E7DB8]"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">
+                      Oggetto
+                    </label>
+                    <input
+                      id="subject"
+                      name="subject"
+                      type="text"
+                      placeholder="Breve descrizione"
+                      className="w-full border-2 border-[#CBDFF6] rounded-md bg-[#F7FBFF] px-4 py-2 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#2E7DB8]"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
+                      Messaggio <span className="text-red-500">*</span>
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      rows={6}
+                      required
+                      placeholder="Scrivi qui il tuo messaggio"
+                      className="w-full border-2 border-[#2E7DB8] rounded-md bg-[#EAF6FF] px-4 py-3 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#2E7DB8] resize-none"
+                    />
+                  </div>
+
+                  <div className="flex items-center gap-4 mt-2">
+                    <button
+                      type="submit"
+                      className="inline-flex items-center justify-center bg-[#2E7DB8] hover:bg-[#256aa8] text-white font-semibold py-3 px-6 rounded-lg shadow transition-colors"
+                    >
+                      Invia
+                    </button>
+
+                    <p className="text-sm text-gray-500">
+                      Oppure chiama: <a href="tel:+393202684125" className="text-[#2E7DB8]">+39 320 268 4125</a>
+                    </p>
+                  </div>
+                </form>
               </div>
             </div>
 
@@ -101,7 +170,6 @@ export default function ContactPage() {
                     provide you with advice and suggestions to make your experience unforgettable.
                   </p>
 
-                  {/* Contact details list: ogni riga è una "area" ben delineata */}
                   <div className="space-y-4">
                     <div className="flex items-start gap-4">
                       <div className="flex-shrink-0 mt-1">
@@ -151,7 +219,6 @@ export default function ContactPage() {
                     </div>
                   </div>
 
-                  {/* Immagine in basso della card */}
                   <div className="mt-8">
                     <img
                       src={img('contact-image-2.jpg')}
@@ -161,7 +228,6 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                {/* Small footer nella card per eventuali note */}
                 <div className="mt-6 text-xs text-gray-400">
                   We reply within 48 hours. For urgent requests call the phone number above.
                 </div>
@@ -186,5 +252,6 @@ export default function ContactPage() {
     </div>
   );
 }
+
 
 
