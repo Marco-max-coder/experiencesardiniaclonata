@@ -128,8 +128,22 @@ export default function ContactPage() {
               </div>
             </div>
           </div>
+
+          {/* BOTTONE PAGAMENTO: inserito in fondo alla sezione principale */}
+          <div className="mt-12 flex justify-center">
+            <a
+              href="https://buy.stripe.com/test_cNi4gz2Cx36UfdW4pz7N600"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Paga ora con Stripe"
+              className="inline-flex items-center justify-center bg-[#6772e5] hover:bg-[#5469d4] text-white font-semibold py-3 px-6 rounded-lg shadow-md transition-colors"
+            >
+              Paga ora
+            </a>
+          </div>
         </div>
       </section>
     </div>
   );
 }
+
