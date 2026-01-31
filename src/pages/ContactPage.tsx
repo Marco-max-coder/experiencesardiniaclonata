@@ -53,97 +53,95 @@ export default function ContactPage() {
       {/* Main Content */}
       <section className="section-padding bg-white">
         <div className="container-custom max-w-6xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Form + Intro */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Left: Form Card */}
             <div
               className={`transition-all duration-700 delay-100 ${
                 isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
               }`}
             >
-              <p className="text-gray-600 text-lg leading-relaxed mb-2">
-                I'm in love with my Sardinia and I enjoy sharing this passion.
-              </p>
-              <p className="text-gray-600 leading-relaxed mb-6">
-                Contact us to share your expectations for your trip to Sardinia, and we will do our
-                best to provide you with advice and suggestions to make your experience
-                unforgettable.
-              </p>
-              <p className="text-sm text-gray-500 mb-8">(*Please fill the mandatory fields)</p>
+              <div className="bg-white border border-gray-100 shadow-sm rounded-lg p-8">
+                <h2 className="text-2xl font-semibold text-gray-800 mb-3">Get in touch</h2>
+                <p className="text-gray-600 text-lg leading-relaxed mb-4">
+                  I'm in love with my Sardinia and I enjoy sharing this passion. Contact us to
+                  share your expectations for your trip to Sardinia, and we will do our best to
+                  provide you with advice and suggestions to make your experience unforgettable.
+                </p>
+                <p className="text-sm text-gray-500 mb-6">(*Please fill the mandatory fields)</p>
 
-              {/* QUI: il nuovo form che invia a Formspree */}
-              <ContactForm />
+                {/* Form wrapper: aggiunge padding e separazione visiva */}
+                <div className="space-y-4">
+                  {/* Se il tuo ContactForm è già stilato, lo lasciamo; altrimenti puoi sostituire con markup del form */}
+                  <ContactForm />
+                </div>
+              </div>
             </div>
 
-            {/* Contact Info */}
+            {/* Right: Contact Info Card */}
             <div
               className={`transition-all duration-700 delay-200 ${
                 isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
               }`}
             >
-              <div className="bg-[#F8F9FA] p-8 rounded-lg">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-12 h-12 rounded-full bg-[#2E7DB8] flex items-center justify-center">
-                    <span className="text-white font-bold">ES</span>
+              <div className="bg-white border border-gray-100 shadow-sm rounded-lg p-8 h-full flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-12 h-12 rounded-full bg-[#2E7DB8] flex items-center justify-center">
+                      <span className="text-white font-bold">ES</span>
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-800">Experience Sardinia</h3>
+                      <p className="text-sm text-gray-500">Local tours & personalized advice</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-800">Experience Sardinia</h3>
-                  </div>
-                </div>
 
-                <p className="text-gray-600 leading-relaxed mb-8">
-                  We are in love with our Sardinia and we enjoy sharing this passion. Contact us to
-                  share your expectations for your trip to Sardinia, and we will do our best to
-                  provide you with advice and suggestions to make your experience unforgettable.
-                </p>
+                  <p className="text-gray-600 leading-relaxed mb-6">
+                    We are in love with our Sardinia and we enjoy sharing this passion. Contact us to
+                    share your expectations for your trip to Sardinia, and we will do our best to
+                    provide you with advice and suggestions to make your experience unforgettable.
+                  </p>
 
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3 text-gray-600">
-                    <MapPin className="w-5 h-5 text-[#2E7DB8]" />
-                    <span>Sardinia, Italy</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-gray-600">
-                    <Phone className="w-5 h-5 text-[#2E7DB8]" />
-                    <a href="tel:+393202684125" className="hover:text-[#2E7DB8] transition-colors">
-                      +39 320 268 4125
-                    </a>
-                  </div>
-                  <div className="flex items-center gap-3 text-gray-600">
-                    <Mail className="w-5 h-5 text-[#2E7DB8]" />
-                    <a
-                      href="mailto:info@experiencesardinia.org"
-                      className="hover:text-[#2E7DB8] transition-colors"
-                    >
-                      info@experiencesardinia.org
-                    </a>
-                  </div>
-                </div>
+                  {/* Contact details list: ogni riga è una "area" ben delineata */}
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-4">
+                      <div className="flex-shrink-0 mt-1">
+                        <div className="w-10 h-10 rounded-md bg-[#EEF6FF] flex items-center justify-center">
+                          <MapPin className="w-5 h-5 text-[#2E7DB8]" />
+                        </div>
+                      </div>
+                      <div>
+                        <div className="text-sm text-gray-500">Location</div>
+                        <div className="text-gray-800 font-medium">Sardinia, Italy</div>
+                      </div>
+                    </div>
 
-                <div className="mt-8">
-                  <img
-                    src={img('contact-image-2.jpg')}
-                    alt="Sardinia landscape"
-                    className="w-full h-48 object-cover rounded-lg"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
+                    <div className="flex items-start gap-4">
+                      <div className="flex-shrink-0 mt-1">
+                        <div className="w-10 h-10 rounded-md bg-[#EEF6FF] flex items-center justify-center">
+                          <Phone className="w-5 h-5 text-[#2E7DB8]" />
+                        </div>
+                      </div>
+                      <div>
+                        <div className="text-sm text-gray-500">Phone</div>
+                        <div className="text-gray-800 font-medium">
+                          <a href="tel:+393202684125" className="hover:text-[#2E7DB8] transition-colors">
+                            +39 320 268 4125
+                          </a>
+                        </div>
+                      </div>
+                    </div>
 
-          {/* BOTTONE PAGAMENTO: inserito in fondo alla sezione principale */}
-          <div className="mt-12 flex justify-center">
-            <a
-              href="https://buy.stripe.com/test_cNi4gz2Cx36UfdW4pz7N600"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Paga ora con Stripe"
-              className="inline-flex items-center justify-center bg-[#6772e5] hover:bg-[#5469d4] text-white font-semibold py-3 px-6 rounded-lg shadow-md transition-colors"
-            >
-              Paga ora
-            </a>
-          </div>
-        </div>
-      </section>
-    </div>
-  );
-}
+                    <div className="flex items-start gap-4">
+                      <div className="flex-shrink-0 mt-1">
+                        <div className="w-10 h-10 rounded-md bg-[#EEF6FF] flex items-center justify-center">
+                          <Mail className="w-5 h-5 text-[#2E7DB8]" />
+                        </div>
+                      </div>
+                      <div>
+                        <div className="text-sm text-gray-500">Email</div>
+                        <div className="text-gray-800 font-medium">
+                          <a
+                            href="mailto:info@experiencesardinia.org"
+                            className="hover:text-[#2E7DB8] transition-colors"
+                          >
 
