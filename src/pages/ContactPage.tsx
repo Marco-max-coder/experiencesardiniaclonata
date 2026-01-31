@@ -144,4 +144,47 @@ export default function ContactPage() {
                             href="mailto:info@experiencesardinia.org"
                             className="hover:text-[#2E7DB8] transition-colors"
                           >
+                            info@experiencesardinia.org
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Immagine in basso della card */}
+                  <div className="mt-8">
+                    <img
+                      src={img('contact-image-2.jpg')}
+                      alt="Sardinia landscape"
+                      className="w-full h-48 object-cover rounded-lg"
+                    />
+                  </div>
+                </div>
+
+                {/* Small footer nella card per eventuali note */}
+                <div className="mt-6 text-xs text-gray-400">
+                  We reply within 48 hours. For urgent requests call the phone number above.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* BOTTONE PAGAMENTO: inserito in fondo alla sezione principale */}
+          <div className="mt-12 flex justify-center">
+            <a
+              href="https://buy.stripe.com/test_cNi4gz2Cx36UfdW4pz7N600"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Paga ora con Stripe"
+              className="inline-flex items-center justify-center bg-[#6772e5] hover:bg-[#5469d4] text-white font-semibold py-3 px-6 rounded-lg shadow-md transition-colors"
+            >
+              Paga ora
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
 
