@@ -1,14 +1,9 @@
 [
-    {
-        "name": "Mario Rossi",
-        "rating": 5,
-        "comment": "Esperienza fantastica in Sardegna!",
-        "date": "2026-01-12"
-    },
-    {
-        "name": "Luca Piras",
-        "rating": 4,
-        "comment": "Servizio ottimo e personale gentilissimo!",
-        "date": "2026-02-01"
-    }
+  {
+    "name": "Marco",
+    "rating": 5,
+    "comment": "Ottimo servizio e splendida esperienza in Sardegna!",
+    "date": "2026-02-02"
+  }
 ]
+``
