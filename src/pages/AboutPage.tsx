@@ -132,6 +132,9 @@ export default function AboutPage() {
             </div>
           </div>
 
+<GoogleReviewForm />
+<Reviews />
+
           {/* Philosophy */}
           <div
             className={`mb-16 transition-all duration-700 delay-300 ${
