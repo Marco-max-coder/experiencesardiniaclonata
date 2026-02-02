@@ -1,6 +1,3 @@
-
-import GoogleReviewForm from '../components/GoogleReviewForm';
-import Reviews from '../components/Reviews';
 import { useEffect, useRef, useState } from 'react';
 import { Check, MapPin, Camera, BookOpen } from 'lucide-react';
 
@@ -131,9 +128,6 @@ export default function AboutPage() {
               </p>
             </div>
           </div>
-
-<GoogleReviewForm />
-<Reviews />
 
           {/* Philosophy */}
           <div
