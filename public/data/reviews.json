@@ -1,26 +1,9 @@
+
 [
   {
     "name": "Marco",
     "rating": 5,
     "comment": "Ottimo servizio e splendida esperienza in Sardegna!",
     "date": "2026-02-02"
-  },
-  {
-    "name": "",
-    "rating": 0,
-    "comment": "",
-    "date": "2026-02-03"
-  },
-  {
-    "name": "",
-    "rating": 0,
-    "comment": "",
-    "date": "2026-02-03"
-  },
-  {
-    "name": "",
-    "rating": 0,
-    "comment": "",
-    "date": "2026-02-03"
   }
 ]
