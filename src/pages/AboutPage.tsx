@@ -1,3 +1,5 @@
+import GoogleReviewForm from '../components/GoogleReviewForm';
+import Reviews from '../components/Reviews';
 import { useEffect, useRef, useState } from 'react';
 import { Check, MapPin, Camera, BookOpen } from 'lucide-react';
 
@@ -124,10 +126,14 @@ export default function AboutPage() {
               <p className="text-gray-600 leading-relaxed">
                 His excursions tell the story of Sardinia in every detail: coastal and mountain trails,
                 breathtaking landscapes, quiet forests, and places rich in memory and identity. Through his guidance,
-                every walk becomes an experience of connection with the island&apos;s landscapes and culture.
+                every walk becomes an experience of connection with the island's landscapes and culture.
               </p>
             </div>
           </div>
+
+          {/* === Sezione Recensioni / Form === */}
+          <GoogleReviewForm />
+          <Reviews />
 
           {/* Philosophy */}
           <div
@@ -180,4 +186,5 @@ export default function AboutPage() {
     </div>
   );
 }
+``
 
