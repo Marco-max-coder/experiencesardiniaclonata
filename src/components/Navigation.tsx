@@ -40,11 +40,11 @@ export default function Navigation({ currentPage = 'home', onPageChange }: Navig
             onClick={() => onPageChange?.('home')}
             className="flex items-center gap-2 hover:opacity-80 transition-opacity"
           >
-    <div className="w-10 h-10 rounded-full bg-[#2E7DB8] flex items-center justify-center overflow-hidden p-0.5">
+<div className="flex items-center justify-center overflow-hidden">
   <img
     src={import.meta.env.BASE_URL + "/favicon.png"}
     alt="Experience Sardinia Logo"
-    className="w-full h-full object-contain"
+    className="h-12 w-12 object-contain"
   />
 </div>
           </button>
