@@ -35,18 +35,21 @@ export default function Navigation({ currentPage = 'home', onPageChange }: Navig
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-[72px]">
-          {/* Logo */}
+  {/* Logo */}
           <button
             onClick={() => onPageChange?.('home')}
-            className="flex items-center gap-2 hover:opacity-80 transition-opacity"
+            className="flex items-center gap-3 hover:opacity-80 transition-opacity"
           >
-<div className="flex items-center justify-center overflow-hidden">
-  <img
-    src={import.meta.env.BASE_URL + "/favicon.png"}
-    alt="Experience Sardinia Logo"
-    className="h-12 w-12 object-contain"
-  />
-</div>
+            <div className="flex items-center justify-center">
+              <img
+                src={import.meta.env.BASE_URL + "/favicon.png"}
+                alt="Experience Sardinia Logo"
+                className="h-10 w-10 object-contain shadow-sm"
+              />
+            </div>
+            <span className="text-xl font-semibold tracking-tight text-gray-800">
+              Experience <span className="text-[#2E7DB8]">Sardinia</span>
+            </span>
           </button>
 
           {/* Desktop Navigation */}
