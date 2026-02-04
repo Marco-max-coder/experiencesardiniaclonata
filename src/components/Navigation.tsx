@@ -35,21 +35,25 @@ export default function Navigation({ currentPage = 'home', onPageChange }: Navig
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-[72px]">
-  {/* Logo */}
+{/* Logo */}
           <button
             onClick={() => onPageChange?.('home')}
             className="flex items-center gap-3 hover:opacity-80 transition-opacity"
           >
             <div className="flex items-center justify-center">
               <img
-                src={import.meta.env.BASE_URL + "/favicon.png"}
+                src="./favicon.png"
                 alt="Experience Sardinia Logo"
-                className="h-10 w-10 object-contain shadow-sm"
+                className="h-10 w-10 object-contain"
+                onError={(e) => {
+                  e.currentTarget.src = 'https://raw.githubusercontent.com/Marco-max-coder/experiencesardiniaclonata/main/public/favicon.png';
+                }}
               />
             </div>
-            <span className="text-xl font-semibold tracking-tight text-gray-800">
-              Experience <span className="text-[#2E7DB8]">Sardinia</span>
-            </span>
+            <div className="flex flex-col items-start">
+              <span className="text-lg font-bold leading-none text-gray-800">Experience</span>
+              <span className="text-lg font-bold leading-none text-[#2E7DB8]">Sardinia</span>
+            </div>
           </button>
 
           {/* Desktop Navigation */}
