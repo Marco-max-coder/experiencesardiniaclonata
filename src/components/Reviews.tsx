@@ -84,9 +84,9 @@ export default function Reviews() {
       setError(null);
       try {
 
-// Usa il base di Vite + nuova cartella "assets"
+// Usa il base di Vite + nuova cartella "data"
 const base = import.meta.env.BASE_URL || '/';
-const url  = `${base}assets/reviews.json?v=${Date.now()}`;
+const url  = `${base}data/reviews.json?v=${Date.now()}`;
 
 const res = await fetch(url, { headers: { Accept: 'application/json' } });
 if (!res.ok) {
