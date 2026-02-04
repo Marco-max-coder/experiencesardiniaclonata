@@ -69,7 +69,7 @@ export default function DiscoverSection() {
             </p>
             <div className="flex justify-center gap-4">
               <a
-                href="https://www.facebook.com/discoversardinia"
+                href="https://www.facebook.com/profile.php?id=61570411576442"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-3 bg-[#1877F2] text-white rounded-full hover:scale-110 transition-transform"
