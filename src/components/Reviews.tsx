@@ -83,10 +83,14 @@ export default function Reviews() {
       setLoading(true);
       setError(null);
       try {
-        // Cache busting per evitare file vecchi
-        const res = await fetch(`data/reviews.json?v=${Date.now()}`, {
-          headers: { 'Accept': 'application/json' },
-        });
+
+// Vite: rispetta il base path (utile con GitHub Pages o domini custom)
+const base = import.meta.env.BASE_URL || '/';
+const url = `${base}data/reviews.json?v=${Date.now()}`;
+
+const res = await fetch(url, {
+  headers: { Accept: 'application/json' },
+});
 
         if (!res.ok) {
           throw new Error(`HTTP ${res.status} su /data/reviews.json`);
