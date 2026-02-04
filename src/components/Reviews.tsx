@@ -21,38 +21,31 @@ export default function Reviews() {
   const [reviews, setReviews] = useState<Review[] | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    // Per GitHub Pages / domini personalizzati
+useEffect(() => {
     const base = (import.meta as any).env?.BASE_URL || '/';
 
-    fetch(`${base}data/reviews.json?v=${Date.now()}`) // cache-busting
+    fetch(`${base}data/reviews.json?v=${Date.now()}`)
       .then((resp) => {
         if (!resp.ok) throw new Error('Impossibile caricare reviews.json');
         return resp.json();
       })
       .then((raw: any[]) => {
-        // 1) Normalizza i campi
         const normalized: Review[] = (Array.isArray(raw) ? raw : []).map((r) => {
-          // rating può arrivare come numero o come testo (es. "Opzione 5 ⭐⭐⭐⭐⭐")
-          const num =
-            typeof r?.rating === 'number'
-              ? r.rating
-              : Number(String(r?.rating ?? '').match(/\d+/)?.[0] || 0);
+          // MODIFICA QUI: Leggiamo "stelle" invece di "rating" e "nome" invece di "name"
+          const numStelle = Number(String(r?.stelle ?? '').match(/\d+/)?.[0] || 0);
 
           return {
-            name: String(r?.name ?? '').trim(),
-            comment: String(r?.comment ?? '').trim(),
-            date: r?.date ? String(r.date) : '',
-            rating: Math.max(0, Math.min(5, num || 0)),
+            name: String(r?.nome ?? r?.name ?? '').trim(),
+            comment: String(r?.commento ?? r?.comment ?? '').trim(),
+            date: r?.data ? String(r.data) : '',
+            rating: Math.max(0, Math.min(5, numStelle || 0)),
           };
         });
 
-        // 2) Filtra quelle non valide
         const cleaned = normalized.filter(
           (r) => r.name && r.comment && r.rating > 0
         );
 
-        // 3) Ordina dalla più recente
         const sorted = cleaned.sort((a, b) =>
           (b.date || '').localeCompare(a.date || '')
         );
