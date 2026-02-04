@@ -1,3 +1,4 @@
+
 import { Instagram, Facebook, Youtube, MessageCircle } from 'lucide-react';
 
 export default function Footer() {
@@ -52,7 +53,7 @@ export default function Footer() {
                 <Instagram className="w-5 h-5" />
               </a>
               <a
-                href="https://www.facebook.com/discoversardinia"
+                href="https://www.facebook.com/profile.php?id=61570411576442"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-3 bg-gray-800 hover:bg-[#1877F2] rounded-full transition-colors"
