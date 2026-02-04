@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+
 type RawReview = {
   nome?: string;
   name?: string;
@@ -10,64 +11,51 @@ type RawReview = {
   stars?: string | number;
   rating?: string | number;
   voto?: string | number;
-  // altri campi imprevisti ignorati
 };
 
 type Review = {
   nome: string;
   commento: string;
-  dataISO: string; // yyyy-mm-dd
-  stelle: number; // 1..5
+  dataISO: string; 
+  stelle: number; 
 };
 
 function parseStars(input: unknown): number {
-  // numero diretto
   if (typeof input === 'number') return clamp(input, 1, 5);
-
   if (typeof input === 'string') {
-    // Cerca una cifra 1..5 dentro la stringa: "Opzione 5????? 5" -> 5
-    const m = input.match(/[1-5]/);
-    if (m) return parseInt(m[0], 10);
-    // a volte può arrivare "5 - Eccellente" o "★★★★★"
+    // Gestisce il formato "Opzione 5????? 5" o simili
+    const matches = input.match(/\d+/g);
+    if (matches && matches.length > 0) {
+      // Prende l'ultimo numero trovato (che di solito è il voto reale)
+      const lastNum = parseInt(matches[matches.length - 1], 10);
+      return clamp(lastNum, 1, 5);
+    }
     const countSolid = (input.match(/★/g) || []).length;
     if (countSolid >= 1 && countSolid <= 5) return countSolid;
-    const maybeNumber = Number(input);
-    if (!Number.isNaN(maybeNumber)) return clamp(maybeNumber, 1, 5);
   }
-
-  // fallback sicuro
-  return 5;
+  return 5; // Fallback
 }
 
 function clamp(n: number, min: number, max: number) {
-  return Math.max(min, Math.min(max, n));
+  return Math.max(min, Math.min(max, isNaN(n) ? max : n));
 }
 
 function normalizeDate(d?: string): string {
   if (!d) return new Date().toISOString().split('T')[0];
-  // Se è ISO o quasi, la teniamo
   const iso = d.match(/^\d{4}-\d{2}-\d{2}$/);
   if (iso) return d;
-
-  // Prova a fare parsing di formati comuni (es: dd/mm/yyyy o mm/dd/yyyy)
   const parsed = new Date(d);
   if (!isNaN(parsed.getTime())) return parsed.toISOString().split('T')[0];
-
   return new Date().toISOString().split('T')[0];
 }
 
 function normalizeOne(raw: RawReview): Review | null {
-  const nome = (raw.nome ?? raw.name ?? '').toString().trim();
+  const nome = (raw.nome ?? raw.name ?? 'Viaggiatore').toString().trim();
   const commento = (raw.commento ?? raw.comment ?? '').toString().trim();
   const stelle = parseStars(raw.stelle ?? raw.stars ?? raw.rating ?? raw.voto);
   const dataISO = normalizeDate(raw.data ?? raw.date);
 
-  if (!nome || !commento) {
-    // Evitiamo di far esplodere il rendering per voci incomplete
-    console.warn('Recensione scartata perché incompleta:', raw);
-    return null;
-  }
-
+  if (!nome || !commento) return null;
   return { nome, commento, dataISO, stelle };
 }
 
@@ -83,69 +71,60 @@ export default function Reviews() {
       setLoading(true);
       setError(null);
       try {
+        // CORREZIONE PATH: Punta alla cartella data che deve stare in public/
+        const base = (import.meta as any).env?.BASE_URL || '/';
+        const url = `${base}data/reviews.json?v=${Date.now()}`;
 
-// Usa il base di Vite + nuova cartella "data"
-const base = import.meta.env.BASE_URL || '/';
-const url  = `${base}data/reviews.json?v=${Date.now()}`;
+        const res = await fetch(url, { cache: 'no-store' });
+        if (!res.ok) throw new Error(`Non trovo il file delle recensioni (Errore ${res.status})`);
 
-const res = await fetch(url, { headers: { Accept: 'application/json' } });
-if (!res.ok) {
-  throw new Error(`HTTP ${res.status} su ${url}`);
-}
-
-
-        // Leggo come testo per poter diagnosticare BOM/virgole ecc.
         const text = await res.text();
-
-        // Rimuove eventuale BOM
-        const clean = text.replace(/^\uFEFF/, '');
-
+        const clean = text.replace(/^\uFEFF/, ''); // Rimuove BOM
         const arr = JSON.parse(clean);
-        if (!Array.isArray(arr)) {
-          throw new Error('Il JSON di reviews non è un array');
-        }
+
+        if (!Array.isArray(arr)) throw new Error('Formato dati non valido');
 
         const normalized = arr
           .map((r) => normalizeOne(r as RawReview))
-          .filter((r): r is Review => r !== null);
+          .filter((r): r is Review => r !== null)
+          .sort((a, b) => b.dataISO.localeCompare(a.dataISO));
 
         if (!cancelled) setReviews(normalized);
       } catch (e: any) {
-        console.error('Errore caricando le reviews:', e);
-        if (!cancelled) setError(e?.message ?? 'Errore sconosciuto');
+        console.error('Errore:', e);
+        if (!cancelled) setError("Al momento non è possibile caricare le recensioni.");
       } finally {
         if (!cancelled) setLoading(false);
       }
     }
 
     load();
-    return () => {
-      cancelled = true;
-    };
+    return () => { cancelled = true; };
   }, []);
 
-  if (loading) return <div>Caricamento recensioni…</div>;
-  if (error) return <div role="alert">Impossibile caricare le recensioni: {error}</div>;
-  if (reviews.length === 0) return <div>Nessuna recensione disponibile.</div>;
+  if (loading) return <div className="text-center p-10">Caricamento recensioni...</div>;
+  if (error) return <div className="text-center p-10 text-red-500">{error}</div>;
+  if (reviews.length === 0) return <div className="text-center p-10">Ancora nessuna recensione. Sii il primo!</div>;
 
   return (
-    <section aria-labelledby="titolo-recensioni">
-      <h2 id="titolo-recensioni">Recensioni</h2>
-      <ul className="reviews-list">
+    <section className="py-12 bg-gray-50 rounded-xl px-4">
+      <h2 className="text-3xl font-bold text-center mb-10 text-gray-800">Cosa dicono di noi</h2>
+      <div className="grid gap-6 max-w-4xl mx-auto">
         {reviews.map((r, idx) => (
-          <li key={idx} className="review-item">
-            <div className="review-header">
-              <strong className="review-name">{r.nome}</strong>
-              <span className="review-stars" aria-label={`${r.stelle} su 5`}>
+          <div key={idx} className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 transition-hover hover:shadow-md">
+            <div className="flex justify-between items-start mb-4">
+              <div>
+                <h3 className="font-bold text-lg text-gray-900">{r.nome}</h3>
+                <time className="text-sm text-gray-500">{new Date(r.dataISO).toLocaleDateString('it-IT')}</time>
+              </div>
+              <div className="text-yellow-400 text-xl" aria-label={`${r.stelle} stelle`}>
                 {'★'.repeat(r.stelle)}{'☆'.repeat(5 - r.stelle)}
-              </span>
+              </div>
             </div>
-            <div className="review-date">{r.dataISO}</div>
-            <p className="review-comment">{r.commento}</p>
-          </li>
+            <p className="text-gray-700 leading-relaxed italic">"{r.commento}"</p>
+          </div>
         ))}
-      </ul>
+      </div>
     </section>
   );
 }
-``
