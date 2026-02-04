@@ -84,17 +84,15 @@ export default function Reviews() {
       setError(null);
       try {
 
-// Vite: rispetta il base path (utile con GitHub Pages o domini custom)
+// Usa il base di Vite + nuova cartella "assets"
 const base = import.meta.env.BASE_URL || '/';
-const url = `${base}data/reviews.json?v=${Date.now()}`;
+const url  = `${base}assets/reviews.json?v=${Date.now()}`;
 
-const res = await fetch(url, {
-  headers: { Accept: 'application/json' },
-});
+const res = await fetch(url, { headers: { Accept: 'application/json' } });
+if (!res.ok) {
+  throw new Error(`HTTP ${res.status} su ${url}`);
+}
 
-        if (!res.ok) {
-          throw new Error(`HTTP ${res.status} su /data/reviews.json`);
-        }
 
         // Leggo come testo per poter diagnosticare BOM/virgole ecc.
         const text = await res.text();
