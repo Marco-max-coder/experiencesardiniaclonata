@@ -84,7 +84,7 @@ export default function Reviews() {
       setError(null);
       try {
         // Cache busting per evitare file vecchi
-        const res = await fetch(`/data/reviews.json?v=${Date.now()}`, {
+        const res = await fetch(`data/reviews.json?v=${Date.now()}`, {
           headers: { 'Accept': 'application/json' },
         });
 
